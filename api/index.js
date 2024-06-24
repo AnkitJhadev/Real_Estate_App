@@ -1,19 +1,22 @@
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRouter from './routes/user.route.js';
+dotenv.config();
 
-const mongoose = require('mongoose');
-const express = require('express');
+mongoose
+  .connect("mongodb+srv://ankitjha:ankitjha@cluster0.e3dwc7p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .then(() => {
+    console.log('Connected to MongoDB!');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 const app = express();
-const port = 8001;
 
-// Connect to MongoDB
-mongoose.connect( "mongodb+srv://ankitjha:ankitjha@cluster0.e3dwc7p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-.then(() => {
-  console.log('MongoDB Connected');
-})
-.catch((err) => {
-  console.error('MongoDB Connection Error:', err);
-  process.exit(1); // Exit process with failure
+app.listen(3000, () => {
+  console.log('Server is running on port 3000!');
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+app.use('/api/user', userRouter);
