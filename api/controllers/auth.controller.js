@@ -19,9 +19,6 @@ export const authsignup = async (req, res) => {
       msg: "User created successfully"
     });
   } catch (err) {
-    res.status(500).json({
-      msg: "Error creating user",
-      error: err.message
-    });
+         next(err);
   }
 };
