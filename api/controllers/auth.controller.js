@@ -1,13 +1,16 @@
 import User from '../models/user.model.js'; // Corrected import path
+import bcryptjs from 'bcryptjs';
 
-export const Signup = async (req, res) => {
+export const Signup = async (req, res,next) => {
   const { username, email, password } = req.body; // Corrected spelling of "password"
+
+  const hashedPassword = bcryptjs.hashSync(password,10);
 
   try {
     const newUser = new User({
       username,
       email,
-      password, // Corrected spelling of "password"
+      password : hashedPassword, // Corrected spelling of "password"
     });
 
     await newUser.save();
@@ -16,9 +19,6 @@ export const Signup = async (req, res) => {
       msg: 'User created successfully',
     });
   } catch (error) {
-    res.status(500).json({
-      msg: 'Error creating user',
-      error: error.message,
-    });
+       next(error);
   }
 };
