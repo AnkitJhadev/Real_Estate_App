@@ -4,7 +4,7 @@ import Signin from './pages/Signin';
 
 import About from './pages/About';
 
-import SignUp from './pages/SignUp';
+import SignUp from './pages/SignUp.jsx';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
