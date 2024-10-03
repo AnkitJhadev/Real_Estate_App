@@ -3,8 +3,7 @@ import Home from './pages/Home';
 import Signin from './pages/Signin';
 
 import About from './pages/About';
-
-import SignUp from './pages/SignUp.jsx';
+import Checkup from './pages/Checkup';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
@@ -20,10 +19,10 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/signin' element={<Signin />} />
+        <Route path='/signup' element={<Checkup />} />
         <Route path='/about' element={<About />} />
         <Route path='/listing/:listingId' element={<Listing />} />
         <Route path='/search' element={<Search />} />
-<Route path='/signup' element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/create-listing' element={<CreateListing />} />
