@@ -5,6 +5,12 @@ import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
+
+  // Validate input
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({ username, email, password: hashedPassword });
   try {
@@ -14,6 +20,7 @@ export const signup = async (req, res, next) => {
     next(error);
   }
 };
+
 
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
